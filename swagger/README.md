@@ -1,6 +1,6 @@
 ## The `openapi` folder
 
-This folder contains your entrypoint `openapi.yaml`.
+This folder contains your entrypoint `datacove-swagger.yaml`.
 
 That file contains references to the entire API definition.
 

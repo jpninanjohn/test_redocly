@@ -1,0 +1,44 @@
+post:
+  tags:
+    - master
+  summary: Wastages
+  description: Wastages
+  operationId: syncWastages
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - in: header
+      name: X-SYNC-TOKEN
+      type: string
+      required: true
+      description: "<sync_token>"
+    - in: header
+      name: Accept-Encoding
+      type: string
+      description: "gzip (mandatory)"
+      required: true
+    - name: sample_body
+      in: body
+      description: Json Format for the bill header data. Stream the data with gzip as encoding.
+      required: true
+      schema:
+        type: array
+        items:
+          $ref: "#/definitions/Wastages"
+  responses:
+    "200":
+      description: Successful Sync
+      schema:
+        $ref: "#/definitions/SyncResponse"
+    "403":
+      description: Unidentified token.
+      schema:
+        $ref: "#/definitions/SyncResponse"
+    "405":
+      description: Invalid input
+      schema:
+        $ref: "#/definitions/UniqueViolationSyncResponse"
+  security:
+    - api_key: []
